@@ -1,11 +1,14 @@
-import "./globals.css";
-import { Inter } from "next/font/google";
+import './globals.css';
+import { Inter } from 'next/font/google';
 
-const inter = Inter({ subsets: ["latin"] });
+import Navbar from './components/Navbar';
+import MyProfilePic from './components/MyProfilePic';
+
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-  title: "Code Rage Blog",
-  description: "Tech News and Tips with hardware, software, reviews and more.",
+  title: 'Code Rage Blog',
+  description: 'Tech News and Tips with hardware, software, reviews and more.',
 };
 
 export default function RootLayout({
@@ -15,7 +18,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
-      <body className={`${inter.className} dark:bg-slate-800`}>{children}</body>
+      <body className={`${inter.className} dark:bg-slate-800`}>
+        <Navbar />
+        <MyProfilePic />
+        {children}
+      </body>
     </html>
   );
 }
