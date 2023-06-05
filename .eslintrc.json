@@ -26,12 +26,5 @@
   ],
   "rules": {
     "no-var": "error"
-  },
-  "ignores": [
-    "**/*.config.js",
-    "!**/node_modules",
-    "!**/eslint.config.js",
-    "!**/.eslintrc.json",
-    "!**/.next"
-  ]
+  }
 }
