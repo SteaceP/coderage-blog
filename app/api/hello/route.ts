@@ -1,9 +1,19 @@
+import { cookies } from 'next/headers';
+
+export const runtime = 'edge';
+
 /**
- * A function that handles a GET request and returns a "Hello, Next.js!" response.
+ * This function handles a GET request and returns a Response object.
  *
- * @param {Request} request - The request object.
- * @return {Promise<Response>} A response object with a "Hello, Next.js!" message.
+ * @param {Request} request - the request object for the GET request
+ * @return {Promise<Response>} a promise that resolves to a Response object
  */
 export async function GET(request: Request): Promise<Response> {
-    return new Response('Hello, Next.js!')
-  }
+	const cookieStore = cookies();
+	const token = cookieStore.get('token');
+
+	return new Response('Hello, Next.js!', {
+		status: 200,
+		headers: { 'Set-Cookie': `token=${token}` },
+	});
+}
