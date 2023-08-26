@@ -1,12 +1,16 @@
 {
-    "cSpell.words": [
-        "Blogpost",
-        "cloudinary",
-        "dbzksofoh",
-        "Firstname",
-        "Lastname",
-        "msapplication",
-        "mstile",
-        "Parens"
-    ]
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.minimap.autohide": true,
+  "markdown.copyFiles.destination": {
+    "/docs/**/*": "public/${documentBaseName}/"
+  },
+  "cSpell.words": [
+    "CLOUDINARY",
+    "lpush",
+    "lrange",
+    "lrem",
+    "rediss",
+    "vfile"
+  ]
 }
