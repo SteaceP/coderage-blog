@@ -1,8 +1,8 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import { remark } from 'remark'
-import html from 'remark-html'
+import { remark } from 'remark';
+import html from 'remark-html';
 
 const postsDirectory = path.join(process.cwd(), 'blogPosts');
 
@@ -15,7 +15,6 @@ export function getSortedPostsData(): BlogPost[] {
   // Get file names under /posts
   const fileNames = fs.readdirSync(postsDirectory);
   const allPostsData = fileNames.map((fileName) => {
-
     // Remove ".md" from file name to get id
     const id = fileName.replace(/\.md$/, '');
 
@@ -46,7 +45,9 @@ export function getSortedPostsData(): BlogPost[] {
  * @param {string} id - The id of the blog post to retrieve.
  * @return {Promise<BlogPost & { contentHtml: string }>} A promise that resolves to an object containing the id, title, date, and HTML content of the blog post.
  */
-export async function getPostData(id: string): Promise<BlogPost & { contentHtml: string; }> {
+export async function getPostData(
+  id: string,
+): Promise<BlogPost & { contentHtml: string }> {
   const fullPath = path.join(postsDirectory, `${id}.md`);
   const fileContents = fs.readFileSync(fullPath, 'utf8');
 
@@ -54,18 +55,18 @@ export async function getPostData(id: string): Promise<BlogPost & { contentHtml:
   const matterResult = matter(fileContents);
 
   const processedContent = await remark()
-      .use(html)
-      .process(matterResult.content);
+    .use(html)
+    .process(matterResult.content);
 
   const contentHtml = processedContent.toString();
 
   const blogPostWithHTML: BlogPost & { contentHtml: string } = {
-      id,
-      title: matterResult.data.title,
-      date: matterResult.data.date,
-      contentHtml,
-  }
+    id,
+    title: matterResult.data.title,
+    date: matterResult.data.date,
+    contentHtml,
+  };
 
   // Combine the data with the id
-  return blogPostWithHTML
+  return blogPostWithHTML;
 }
